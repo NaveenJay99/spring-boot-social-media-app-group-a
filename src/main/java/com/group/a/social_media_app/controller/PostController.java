@@ -1,6 +1,9 @@
+package com.group.a.social_media_app.controller;
+
 import ch.qos.logback.core.model.Model;
 import com.group.a.social_media_app.dto.PostDTO;
 import com.group.a.social_media_app.entity.Post;
+import com.group.a.social_media_app.entity.User;
 import com.group.a.social_media_app.service.CustomUserDetailsService;
 import com.group.a.social_media_app.service.PostService;
 import com.group.a.social_media_app.service.UserService;
