@@ -1,5 +1,6 @@
 package com.group.a.social_media_app.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,3 +30,4 @@ public class User {
 
 
 }
+
