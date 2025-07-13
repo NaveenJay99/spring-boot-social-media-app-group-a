@@ -1,6 +1,6 @@
 package com.group.a.social_media_app.controller;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 import com.group.a.social_media_app.dto.PostDTO;
 import com.group.a.social_media_app.entity.Post;
 import com.group.a.social_media_app.entity.User;
