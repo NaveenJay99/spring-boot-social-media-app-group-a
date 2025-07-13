@@ -92,3 +92,7 @@ public class GlobalExceptionHandler {
 
         // Default fallback
         redirect
+    }
+
+}
+
