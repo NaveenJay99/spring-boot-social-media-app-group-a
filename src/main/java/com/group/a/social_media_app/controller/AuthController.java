@@ -3,6 +3,7 @@ package com.group.a.social_media_app.controller;
 
 
 import com.group.a.social_media_app.dto.UserRegistrationDTO;
+import com.group.a.social_media_app.exception.UserAlreadyExistsException;
 import com.group.a.social_media_app.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.security.Principal;
 

@@ -29,4 +29,12 @@ public class UserRegistrationDTO {
     @NotBlank(message = "Last name is required")
     @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
     private String lastName;
+
+    @NotBlank(message = "Confirm Password is required")
+    private String confirmPassword;
+
+    public boolean isPasswordMatching() {
+        return this.password != null && this.password.equals(this.confirmPassword);
+    }
+
 }

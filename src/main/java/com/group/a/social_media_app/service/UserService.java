@@ -3,12 +3,15 @@ package com.group.a.social_media_app.service;
 
 import com.group.a.social_media_app.dto.UserRegistrationDTO;
 import com.group.a.social_media_app.entity.User;
+import com.group.a.social_media_app.exception.UserAlreadyExistsException;
 import com.group.a.social_media_app.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+
 
 import java.util.Optional;
 
