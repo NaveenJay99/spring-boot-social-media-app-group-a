@@ -3,7 +3,7 @@ package com.group.a.social_media_app.service;
 
 import com.group.a.social_media_app.entity.User;
 import com.group.a.social_media_app.repository.UserRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -36,6 +37,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return new CustomUserPrincipal(user);
     }
+
 
     public static class CustomUserPrincipal implements UserDetails {
         private final User user;
