@@ -29,7 +29,7 @@ public class Post {
 
     @Column(nullable = false, length = 1000)
     @NotBlank(message = "Post content is required")
-    @Size(min = 1, max = 1000, message = "Post content must be between 1 and 1000 characters")
+    @Size(max = 1000, message = "Post content must be between 1 and 1000 characters")
     private String content;
 
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -46,19 +46,14 @@ public class Post {
 
     public String getTimeAgo() {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime postTime = this.createdAt;
-
-        if (postTime.isAfter(now.minusMinutes(1))) {
-            return "Just now";
-        } else if (postTime.isAfter(now.minusHours(1))) {
-            long minutes = java.time.Duration.between(postTime, now).toMinutes();
-            return minutes + " minute" + (minutes == 1 ? "" : "s") + " ago";
-        } else if (postTime.isAfter(now.minusDays(1))) {
-            long hours = java.time.Duration.between(postTime, now).toHours();
-            return hours + " hour" + (hours == 1 ? "" : "s") + " ago";
-        } else {
-            long days = java.time.Duration.between(postTime, now).toDays();
-            return days + " day" + (days == 1 ? "" : "s") + " ago";
-        }
+        if (createdAt == null) return "";
+        long minutes = java.time.Duration.between(createdAt, now).toMinutes();
+        if (minutes < 1) return "Just now";
+        if (minutes < 60) return minutes + " minute(s) ago";
+        long hours = minutes / 60;
+        if (hours < 24) return hours + " hour(s) ago";
+        long days = hours / 24;
+        return days + " day(s) ago";
     }
+
 }
