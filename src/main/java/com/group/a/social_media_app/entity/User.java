@@ -7,4 +7,13 @@ public class User {
 
     public String getPassword() {
     }
+
+    public boolean getIsActive() {
+    }
+
+    public String getFullName() {
+    }
+
+    public Long getId() {
+    }
 }
