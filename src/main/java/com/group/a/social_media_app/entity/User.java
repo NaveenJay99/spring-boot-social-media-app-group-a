@@ -42,12 +42,10 @@ public class User {
 
     @Column(name = "first_name", nullable = false)
     @NotBlank(message = "First name is required")
-    @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
     @NotBlank(message = "Last name is required")
-    @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
     private String lastName;
 
     @Column(name = "created_at", nullable = false, updatable = false)
