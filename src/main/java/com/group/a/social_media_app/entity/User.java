@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "users")
+@Table(name ="users")
 public class User {
 
     @Id
@@ -27,5 +27,5 @@ public class User {
     private String bio;
     private String profilePictureUrl;
 
-    // Add more fields as needed, e.g., dateOfBirth, createdAt, etc.
+
 }
