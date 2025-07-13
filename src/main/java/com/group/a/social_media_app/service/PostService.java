@@ -5,7 +5,7 @@ import com.group.a.social_media_app.dto.PostDTO;
 import com.group.a.social_media_app.entity.Post;
 import com.group.a.social_media_app.entity.User;
 import com.group.a.social_media_app.repository.PostRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

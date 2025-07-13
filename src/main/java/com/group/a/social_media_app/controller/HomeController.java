@@ -1,4 +1,6 @@
-import ch.qos.logback.core.model.Model;
+package com.group.a.social_media_app.controller;
+
+import org.springframework.ui.Model;
 import com.group.a.social_media_app.dto.PostDTO;
 import com.group.a.social_media_app.entity.User;
 import com.group.a.social_media_app.service.CustomUserDetailsService;
