@@ -1,6 +1,7 @@
 package com.socialmedia.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -12,10 +13,17 @@ import java.time.LocalDateTime;
         @UniqueConstraint(columnNames = {"sender_id", "receiver_id"})
 })
 @EntityListeners(AuditingEntityListener.class)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
+@ToString(exclude = {"sender", "receiver"})
 public class FriendRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,6 +34,7 @@ public class FriendRequest {
     @JoinColumn(name = "receiver_id", nullable = false)
     private User receiver;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RequestStatus status = RequestStatus.PENDING;
@@ -43,63 +52,11 @@ public class FriendRequest {
         PENDING, ACCEPTED, DECLINED
     }
 
-    // Constructors
-    public FriendRequest() {
-    }
-
+    // Custom constructor for basic friend request creation
     public FriendRequest(User sender, User receiver) {
         this.sender = sender;
         this.receiver = receiver;
         this.status = RequestStatus.PENDING;
-    }
-
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
-
-    public User getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
-    }
-
-    public RequestStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(RequestStatus status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     // Helper methods
@@ -129,29 +86,5 @@ public class FriendRequest {
 
     public String getReceiverFullName() {
         return receiver != null ? receiver.getFullName() : "Unknown";
-    }
-
-    @Override
-    public String toString() {
-        return "FriendRequest{" +
-                "id=" + id +
-                ", sender=" + (sender != null ? sender.getFullName() : "null") +
-                ", receiver=" + (receiver != null ? receiver.getFullName() : "null") +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FriendRequest that = (FriendRequest) o;
-        return id != null && id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }

@@ -1,9 +1,17 @@
 package com.socialmedia.dto;
 
 import com.socialmedia.entity.FriendRequest;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class FriendRequestDto {
 
     private Long id;
@@ -17,10 +25,7 @@ public class FriendRequestDto {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    // Constructors
-    public FriendRequestDto() {
-    }
-
+    // Custom constructor for basic friend request creation
     public FriendRequestDto(Long id, Long senderId, String senderName, 
                            Long receiverId, String receiverName, 
                            FriendRequest.RequestStatus status, LocalDateTime createdAt) {
@@ -31,87 +36,6 @@ public class FriendRequestDto {
         this.receiverName = receiverName;
         this.status = status;
         this.createdAt = createdAt;
-    }
-
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getSenderId() {
-        return senderId;
-    }
-
-    public void setSenderId(Long senderId) {
-        this.senderId = senderId;
-    }
-
-    public String getSenderName() {
-        return senderName;
-    }
-
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
-    }
-
-    public String getSenderEmail() {
-        return senderEmail;
-    }
-
-    public void setSenderEmail(String senderEmail) {
-        this.senderEmail = senderEmail;
-    }
-
-    public Long getReceiverId() {
-        return receiverId;
-    }
-
-    public void setReceiverId(Long receiverId) {
-        this.receiverId = receiverId;
-    }
-
-    public String getReceiverName() {
-        return receiverName;
-    }
-
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
-    }
-
-    public String getReceiverEmail() {
-        return receiverEmail;
-    }
-
-    public void setReceiverEmail(String receiverEmail) {
-        this.receiverEmail = receiverEmail;
-    }
-
-    public FriendRequest.RequestStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(FriendRequest.RequestStatus status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     // Helper methods
@@ -154,19 +78,5 @@ public class FriendRequestDto {
         } else {
             return senderId;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "FriendRequestDto{" +
-                "id=" + id +
-                ", senderId=" + senderId +
-                ", senderName='" + senderName + '\'' +
-                ", receiverId=" + receiverId +
-                ", receiverName='" + receiverName + '\'' +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
     }
 }
