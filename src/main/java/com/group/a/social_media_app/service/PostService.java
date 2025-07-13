@@ -1,6 +1,16 @@
 package com.group.a.social_media_app.service;
 
 
+import com.group.a.social_media_app.dto.PostDTO;
+import com.group.a.social_media_app.entity.Post;
+import com.group.a.social_media_app.entity.User;
+import com.group.a.social_media_app.repository.PostRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
