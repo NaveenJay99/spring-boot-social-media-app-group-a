@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,7 +33,7 @@ public class HomeController {
         List<PostDTO> posts = postService.convertToDTOs(postService.getPostsByUser(user));
         model.addAttribute("currentUser", user);
         model.addAttribute("posts", posts);
-        model.addAttribute("postCount", postService.getPostCountByUser(user));
+        model.addAttribute("postCount", Optional.of(postService.getPostCountByUser(user)));
         model.addAttribute("newPost", new PostDTO());
         return "home/feed";
     }
