@@ -5,9 +5,11 @@ import com.group.a.social_media_app.dto.PostDTO;
 import com.group.a.social_media_app.entity.Post;
 import com.group.a.social_media_app.entity.User;
 import com.group.a.social_media_app.repository.PostRepository;
+import lombok.Builder;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 @Transactional
+@Builder
 public class PostService {
 
     private final PostRepository postRepository;
+    private static final Logger log = LoggerFactory.getLogger(PostService.class);
+
 
     public Post createPost(PostDTO dto, User user) {
         log.info("Creating post for: {}", user.getEmail());

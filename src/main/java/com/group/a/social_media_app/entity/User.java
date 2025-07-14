@@ -5,10 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -30,6 +27,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @Column(unique = true, nullable = false)
     @Email(message = "Please provide a valid email address")
     @NotBlank(message = "Email is required")
@@ -77,5 +75,9 @@ public class User {
         posts.remove(post);
         post.setUser(null);
     }
+    public String getEmail() {
+        return email;
+    }
+
 }
 
