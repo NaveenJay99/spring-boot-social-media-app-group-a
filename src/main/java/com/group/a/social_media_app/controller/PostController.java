@@ -38,7 +38,7 @@ public class PostController {
         }
 
         User user = userService.findByEmail(principal.getUsername()).orElse(null);
-        if (user == null) return "redirect:/login";
+        if (user == null) return "/login";
 
         postService.createPost(postDTO, user);
         redirect.addFlashAttribute("success", "Post created successfully!");

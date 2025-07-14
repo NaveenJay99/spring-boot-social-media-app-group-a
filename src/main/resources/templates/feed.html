@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>Welcome, <span th:text="${currentUser.firstName} + ' ' + ${currentUser.lastName}">User</span></h2>
+    <h2>Welcome, <span th:text="${currentUser != null ? currentUser.firstName + ' ' + currentUser.lastName : 'User'}">User</span></h2>
 
     <a th:href="@{/logout}">Logout</a>
 
