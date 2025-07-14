@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
-$END$
+<div class="container">
+    <h2>Login</h2>
+
+    <!-- Flash messages -->
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <!-- Login Form -->
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label for="username">Email:</label>
+            <input type="email" id="username" name="username" placeholder="Enter your email" required />
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        </div>
+
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+    <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
+</div>
+<script th:src="@{/script.js}" defer></script>
 </body>
 </html>

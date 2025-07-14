@@ -72,7 +72,7 @@ public class PostController {
         }
 
         model.addAttribute("post", postService.convertToDTO(post));
-        return "home/edit-post";
+        return "edit-post";
     }
 
     @PostMapping("/update/{id}")

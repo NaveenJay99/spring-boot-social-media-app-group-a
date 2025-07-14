@@ -46,7 +46,7 @@ public class User {
     @NotBlank(message = "Last name is required")
     private String lastName;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at")
     @CreatedDate
     private LocalDateTime createdAt;
 

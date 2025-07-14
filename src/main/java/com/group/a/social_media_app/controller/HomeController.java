@@ -35,6 +35,6 @@ public class HomeController {
         model.addAttribute("posts", posts);
         model.addAttribute("postCount", Optional.of(postService.getPostCountByUser(user)));
         model.addAttribute("newPost", new PostDTO());
-        return "home/feed";
+        return "feed";
     }
 }

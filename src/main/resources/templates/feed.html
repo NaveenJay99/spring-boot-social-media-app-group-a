@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Home Feed</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
-$END$
+<div class="container">
+    <h2>Welcome, <span th:text="${currentUser.firstName} + ' ' + ${currentUser.lastName}">User</span></h2>
+
+    <a th:href="@{/logout}">Logout</a>
+
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <form th:action="@{/posts/create}" th:object="${newPost}" method="post">
+        <textarea id="content" th:field="*{content}" placeholder="What's on your mind?" rows="3" cols="50"></textarea>
+        <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
+        <button type="submit">Post</button>
+    </form>
+
+    <div>
+        <h3>Your Posts (Total: <span th:text="${postCount}">0</span>)</h3>
+        <div th:if="${posts.empty}">
+            <p>No posts yet.</p>
+        </div>
+        <div th:each="post : ${posts}">
+            <div class="post">
+                <p><strong th:text="${post.authorName}">Name</strong> • <small th:text="${post.timeAgo}">Time</small></p>
+                <p th:text="${post.content}">Content</p>
+                <form th:action="@{'/posts/delete/' + ${post.id}}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+                <a th:href="@{'/posts/edit/' + ${post.id}}">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -37,14 +37,14 @@ public class AuthController {
         if (principal != null) return "redirect:/home";
         if (error != null) model.addAttribute("error", "Invalid email or password");
         if (logout != null) model.addAttribute("success", "You have been logged out");
-        return "auth/login";
+        return "login";
     }
 
     @GetMapping("/register")
     public String showRegisterForm(Model model, Principal principal) {
         if (principal != null) return "redirect:/home";
         model.addAttribute("user", new UserRegistrationDTO());
-        return "auth/register";
+        return "register";
     }
 
     @PostMapping("/register")
@@ -52,10 +52,10 @@ public class AuthController {
                            BindingResult result,
                            RedirectAttributes redirect,
                            Model model) {
-        if (result.hasErrors()) return "auth/register";
+        if (result.hasErrors()) return "register";
         if (!dto.isPasswordMatching()) {
             result.rejectValue("confirmPassword", "error.user", "Passwords do not match");
-            return "auth/register";
+            return "register";
         }
 
         try {
@@ -64,10 +64,10 @@ public class AuthController {
             return "redirect:/login";
         } catch (UserAlreadyExistsException e) {
             result.rejectValue("email", "error.user", e.getMessage());
-            return "auth/register";
+            return "register";
         } catch (Exception e) {
             model.addAttribute("error", "Registration failed. Try again.");
-            return "auth/register";
+            return "register";
         }
     }
 
