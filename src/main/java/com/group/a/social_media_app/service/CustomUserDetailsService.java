@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         log.info("Authenticating user: {}", email);
 
-        User user = userRepository.findByEmailAndIsActive(email, true)
+        User user = userRepository.findByEmailAndIsActive(email, Boolean.valueOf(true))
                 .orElseThrow(() -> {
                     log.error("User not found: {}", email);
                     return new UsernameNotFoundException("Invalid credentials");
